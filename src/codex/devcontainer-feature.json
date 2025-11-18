@@ -1,7 +1,7 @@
 {
     "name": "Codex",
     "id": "codex",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A feature for Codex integration",
     "options": {
         "release_tag": {
