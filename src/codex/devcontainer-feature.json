@@ -1,0 +1,16 @@
+{
+    "name": "Codex",
+    "id": "codex",
+    "version": "1.0.0",
+    "description": "A feature for Codex integration",
+    "options": {
+        "release_tag": {
+            "type": "string",
+            "default": "latest",
+            "description": "GitHub tag for the Codex release to install. Use 'latest' for the most recent release."
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
+}

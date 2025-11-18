@@ -1,9 +1,9 @@
 {
-    "hello": {
+    "codex-with-version": {
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
-            "hello": {
-                "greeting": "hello"
+            "codex": {
+                "release_tag": "rust-v0.58.0"
             }
         }
     }
