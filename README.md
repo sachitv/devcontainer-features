@@ -8,6 +8,7 @@
 
 - [Features](#features)
   - [Codex](#codex)
+  - [Opencode](#opencode)
 
 ## Features
 
@@ -50,5 +51,34 @@ $ codex-cli --help
 
 - Ensure you set the `OPENAI_API_KEY` environment variable for Codex to function properly.
 - The feature installs Codex to `/usr/local/bin/` and creates a wrapper script for convenience.
+
+### Opencode
+
+The Opencode feature installs the [opencode CLI tool](https://github.com/sst/opencode) so it is available inside your dev container. It fetches the requested release from GitHub and places the binary on your PATH.
+
+#### Usage
+
+Add the feature to your `devcontainer.json`:
+
+```jsonc
+{
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+        "ghcr.io/sachitv/devcontainer-features/opencode:1": {
+            "version": "latest"
+        }
+    }
+}
+```
+
+After building the container, you can verify the installation:
+
+```bash
+$ opencode --help
+```
+
+#### Options
+
+- `version`: Version of opencode to install (default: `latest`). Provide a specific semantic version like `1.2.3` to pin the install.
 
 
