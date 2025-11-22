@@ -1,13 +1,13 @@
 
-# Codex (codex)
+# Opencode (opencode)
 
-A feature for Codex integration
+A feature for installing the opencode CLI tool
 
 ## Example Usage
 
 ```json
 "features": {
-    "ghcr.io/sachitv/devcontainer-features/codex:1": {}
+    "ghcr.io/sachitv/devcontainer-features/opencode:1": {}
 }
 ```
 
@@ -15,7 +15,7 @@ A feature for Codex integration
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| release_tag | GitHub tag for the Codex release to install. Use 'latest' for the most recent release. | string | latest |
+| version | Version of opencode to install. Use 'latest' for the most recent release. | string | latest |
 
 
 

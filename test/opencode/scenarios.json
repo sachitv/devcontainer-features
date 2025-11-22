@@ -1,0 +1,10 @@
+{
+    "opencode-with-version": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "opencode": {
+                "version": "1.0.98"
+            }
+        }
+    }
+}
