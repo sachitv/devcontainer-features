@@ -54,7 +54,7 @@ $ codex-cli --help
 
 ### Opencode
 
-The Opencode feature installs the [opencode CLI tool](https://github.com/sst/opencode) so it is available inside your dev container. It fetches the requested release from GitHub and places the binary on your PATH.
+The Opencode feature installs the [opencode CLI tool](https://github.com/anomalyco/opencode) so it is available inside your dev container. It fetches the requested release from GitHub and places the binary on your PATH.
 
 #### Usage
 
