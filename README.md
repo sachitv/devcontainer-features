@@ -100,17 +100,15 @@ Use the `version` option to install `latest` or pin a semantic version. After th
 
 ### agy CLI
 
-The agy feature installs the agy CLI through its npm package.
+The agy feature installs the latest stable Antigravity CLI.
 
 ```jsonc
 "features": {
-    "ghcr.io/sachitv/devcontainer-features/agy:1": {
-        "version": "latest"
-    }
+    "ghcr.io/sachitv/devcontainer-features/agy:1": {}
 }
 ```
 
-Use the `version` option to install `latest` or pin a semantic version. After the container is built, run `agy --version` to verify the installation.
+After the container is built, run `agy --version` to verify the installation.
 
 ### Kilo Code CLI
 

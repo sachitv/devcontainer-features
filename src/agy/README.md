@@ -1,19 +1,11 @@
-# agy CLI (via npm)
+# agy CLI
 
-Installs the `agy` command-line interface and makes it available on `PATH`.
+Installs the latest stable [Antigravity CLI](https://antigravity.google/product/antigravity-cli) and makes `agy` available on `PATH`.
 
 ## Example Usage
 
 ```json
 "features": {
-    "ghcr.io/sachitv/devcontainer-features/agy:1": {
-        "version": "latest"
-    }
+    "ghcr.io/sachitv/devcontainer-features/agy:1": {}
 }
 ```
-
-## Options
-
-| Options Id | Description | Type | Default Value |
-|-----|-----|-----|-----|
-| version | Version of the agy CLI to install, or `latest`. | string | latest |
