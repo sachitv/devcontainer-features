@@ -48,7 +48,7 @@ $ codex-cli --help
 
 #### Options
 
-- `release_tag`: Specify the GitHub release tag for Codex to install (default: "latest"). You can provide a specific tag like "rust-v0.58.0" or use "latest" for the most recent release.
+- `release_tag`: Specify the GitHub release tag for Codex to install (default: "latest"). You can provide a specific tag like "rust-v0.58.0" or use "latest" for the stable release marked latest by GitHub; draft and prerelease releases are ignored.
 
 #### Notes
 

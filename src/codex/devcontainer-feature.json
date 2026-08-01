@@ -1,13 +1,13 @@
 {
     "name": "Codex",
     "id": "codex",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A feature for Codex integration",
     "options": {
         "release_tag": {
             "type": "string",
             "default": "latest",
-            "description": "GitHub tag for the Codex release to install. Use 'latest' for the most recent release."
+            "description": "GitHub tag for the Codex release to install. Use 'latest' for the stable release marked latest by GitHub."
         }
     },
     "installsAfter": [
