@@ -1,6 +1,6 @@
-# Kilo Code CLI (via npm)
+# Kilo Code CLI
 
-Installs the [Kilo Code CLI](https://kilo.ai/cli) and makes `kilo` available on `PATH`.
+Installs the [Kilo Code CLI](https://kilo.ai/cli) from GitHub Releases and makes `kilo` available on `PATH`.
 
 ## Example Usage
 
