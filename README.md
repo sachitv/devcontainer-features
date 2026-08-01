@@ -86,7 +86,7 @@ $ opencode --help
 
 ### Claude Code
 
-The Claude Code feature installs Anthropic's command-line coding agent through its npm package.
+The Claude Code feature installs [Anthropic's Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) command-line coding agent from its official native binary on GitHub Releases. No Node.js or npm is required.
 
 ```jsonc
 "features": {
@@ -96,7 +96,7 @@ The Claude Code feature installs Anthropic's command-line coding agent through i
 }
 ```
 
-Use the `version` option to install `latest` or pin a semantic version. After the container is built, run `claude --version` to verify the installation.
+Use the `version` option to install `latest` or pin a semantic version (for example `2.1.220`). After the container is built, run `claude --version` to verify the installation.
 
 ### agy CLI
 

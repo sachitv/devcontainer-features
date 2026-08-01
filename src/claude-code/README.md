@@ -1,6 +1,6 @@
-# Claude Code (via npm)
+# Claude Code
 
-Installs the [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) command-line coding agent and makes `claude` available on `PATH`.
+Installs the [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) command-line coding agent from its official native binary on GitHub Releases and makes `claude` available on `PATH`. No Node.js or npm is required.
 
 ## Example Usage
 
