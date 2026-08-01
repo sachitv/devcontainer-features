@@ -59,8 +59,5 @@ curl --fail --silent --show-error --location "$DOWNLOAD_URL" --output "$TMP_DIR/
 zstd --decompress "$TMP_DIR/$ASSET_NAME" -o "$TMP_DIR/$BINARY_NAME"
 install -m 0755 "$TMP_DIR/$BINARY_NAME" "/usr/local/bin/$BINARY_NAME"
 
-# Retain the convenience command exposed by earlier versions of this Feature.
-ln -sf "/usr/local/bin/$BINARY_NAME" "/usr/local/bin/${BINARY_NAME}-cli"
-
 "$BINARY_NAME" --version
 echo "Codex $RELEASE_TAG installed successfully."
