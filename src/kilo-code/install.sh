@@ -99,9 +99,7 @@ install_kilo() {
     trap 'rm -rf "$tempDirectory"' EXIT
     curl_download_stdout "$downloadUrl" | tar -xzf - -C "$tempDirectory"
     mkdir -p "$binaryTargetFolder"
-    cp -a "$tempDirectory/." "$binaryTargetFolder/"
-    chmod 755 "$binaryTargetFolder"
-    chmod 755 "$binaryTargetFolder/$binaryName"
+    install -m 0755 "$tempDirectory/$binaryName" "$binaryTargetFolder/$binaryName"
 }
 
 install_kilo
