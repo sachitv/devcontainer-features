@@ -1,7 +1,7 @@
 {
     "name": "Kilo Code CLI",
     "id": "kilo-code",
-    "version": "2.0.0",
+    "version": "1.0.0",
     "description": "A feature for installing the Kilo Code CLI tool",
     "documentationURL": "https://kilo.ai/cli",
     "options": {
