@@ -1,0 +1,17 @@
+{
+    "name": "Claude Code",
+    "id": "claude-code",
+    "version": "1.0.0",
+    "description": "Installs the Claude Code command-line coding agent from its official native binary on GitHub Releases",
+    "documentationURL": "https://docs.anthropic.com/en/docs/claude-code/overview",
+    "options": {
+        "version": {
+            "type": "string",
+            "default": "latest",
+            "description": "Version of Claude Code to install, or 'latest'."
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
+}

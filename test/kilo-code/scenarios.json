@@ -1,0 +1,10 @@
+{
+    "kilo-code-with-version": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "kilo-code": {
+                "version": "7.4.18"
+            }
+        }
+    }
+}

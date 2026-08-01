@@ -15,7 +15,7 @@ A feature for Codex integration
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| release_tag | GitHub tag for the Codex release to install. Use 'latest' for the most recent release. | string | latest |
+| release_tag | GitHub tag for the Codex release to install. Use 'latest' for the stable release marked latest by GitHub. | string | latest |
 
 
 

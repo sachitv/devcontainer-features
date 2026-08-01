@@ -1,0 +1,8 @@
+{
+  "name": "agy-local",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "../features/agy": {}
+  },
+  "remoteUser": "root"
+}

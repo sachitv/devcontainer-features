@@ -9,6 +9,9 @@
 - [Features](#features)
   - [Codex](#codex)
   - [Opencode](#opencode)
+  - [Claude Code](#claude-code)
+  - [agy CLI](#agy-cli)
+  - [Kilo Code CLI](#kilo-code-cli)
 
 ## Features
 
@@ -39,18 +42,16 @@ After building the container, you can use Codex:
 $ codex --version
 Codex v0.58.0
 
-$ codex-cli --help
-# Or use the wrapper script
 ```
 
 #### Options
 
-- `release_tag`: Specify the GitHub release tag for Codex to install (default: "latest"). You can provide a specific tag like "rust-v0.58.0" or use "latest" for the most recent release.
+- `release_tag`: Specify the GitHub release tag for Codex to install (default: "latest"). You can provide a specific tag like "rust-v0.58.0" or use "latest" for the stable release marked latest by GitHub; draft and prerelease releases are ignored.
 
 #### Notes
 
 - Ensure you set the `OPENAI_API_KEY` environment variable for Codex to function properly.
-- The feature installs Codex to `/usr/local/bin/` and creates a wrapper script for convenience.
+- The feature installs Codex to `/usr/local/bin/`.
 
 ### Opencode
 
@@ -81,4 +82,42 @@ $ opencode --help
 
 - `version`: Version of opencode to install (default: `latest`). Provide a specific semantic version like `1.2.3` to pin the install.
 
+### Claude Code
 
+The Claude Code feature installs [Anthropic's Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) command-line coding agent from its official native binary on GitHub Releases. No Node.js or npm is required.
+
+```jsonc
+"features": {
+    "ghcr.io/sachitv/devcontainer-features/claude-code:1": {
+        "version": "latest"
+    }
+}
+```
+
+Use the `version` option to install `latest` or pin a semantic version (for example `2.1.220`). After the container is built, run `claude --version` to verify the installation.
+
+### agy CLI
+
+The agy feature installs the latest stable Antigravity CLI.
+
+```jsonc
+"features": {
+    "ghcr.io/sachitv/devcontainer-features/agy:1": {}
+}
+```
+
+After the container is built, run `agy --version` to verify the installation.
+
+### Kilo Code CLI
+
+The Kilo Code feature installs the [Kilo Code CLI](https://kilo.ai/cli) from its GitHub Releases native binary.
+
+```jsonc
+"features": {
+    "ghcr.io/sachitv/devcontainer-features/kilo-code:1": {
+        "version": "latest"
+    }
+}
+```
+
+Use the `version` option to install `latest` or pin a semantic version. After the container is built, run `kilo --version` to verify the installation.

@@ -1,0 +1,6 @@
+{
+    "name": "agy CLI",
+    "id": "agy",
+    "version": "1.0.0",
+    "description": "Installs the latest stable agy command-line interface"
+}
