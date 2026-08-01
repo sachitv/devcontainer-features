@@ -1,0 +1,16 @@
+{
+    "name": "Claude Code",
+    "id": "claude-code",
+    "version": "1.0.0",
+    "description": "Installs the Claude Code command-line coding agent",
+    "options": {
+        "version": {
+            "type": "string",
+            "default": "latest",
+            "description": "Version of Claude Code to install, or 'latest'."
+        }
+    },
+    "dependsOn": {
+        "ghcr.io/devcontainers/features/node:1": {}
+    }
+}

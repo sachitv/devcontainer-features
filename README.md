@@ -9,6 +9,9 @@
 - [Features](#features)
   - [Codex](#codex)
   - [Opencode](#opencode)
+  - [Claude Code](#claude-code)
+  - [agy CLI](#agy-cli)
+  - [Kilo Code CLI](#kilo-code-cli)
 
 ## Features
 
@@ -81,4 +84,44 @@ $ opencode --help
 
 - `version`: Version of opencode to install (default: `latest`). Provide a specific semantic version like `1.2.3` to pin the install.
 
+### Claude Code
 
+The Claude Code feature installs Anthropic's command-line coding agent through its npm package.
+
+```jsonc
+"features": {
+    "ghcr.io/sachitv/devcontainer-features/claude-code:1": {
+        "version": "latest"
+    }
+}
+```
+
+Use the `version` option to install `latest` or pin a semantic version. After the container is built, run `claude --version` to verify the installation.
+
+### agy CLI
+
+The agy feature installs the agy CLI through its npm package.
+
+```jsonc
+"features": {
+    "ghcr.io/sachitv/devcontainer-features/agy:1": {
+        "version": "latest"
+    }
+}
+```
+
+Use the `version` option to install `latest` or pin a semantic version. After the container is built, run `agy --version` to verify the installation.
+
+### Kilo Code CLI
+
+The Kilo Code feature installs the [Kilo Code CLI](https://kilo.ai/cli) through its npm package.
+
+```jsonc
+"features": {
+    "ghcr.io/sachitv/devcontainer-features/kilo-code:1": {
+        "version": "latest"
+    }
+}
+```
+
+Use the `version` option to install `latest` or pin a semantic version. After the container is built, run `kilo --version` to verify the installation.

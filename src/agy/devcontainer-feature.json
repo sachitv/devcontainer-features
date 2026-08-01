@@ -1,0 +1,16 @@
+{
+    "name": "agy CLI",
+    "id": "agy",
+    "version": "1.0.0",
+    "description": "Installs the agy command-line interface",
+    "options": {
+        "version": {
+            "type": "string",
+            "default": "latest",
+            "description": "Version of the agy CLI to install, or 'latest'."
+        }
+    },
+    "dependsOn": {
+        "ghcr.io/devcontainers/features/node:1": {}
+    }
+}
