@@ -112,7 +112,7 @@ After the container is built, run `agy --version` to verify the installation.
 
 ### Kilo Code CLI
 
-The Kilo Code feature installs the [Kilo Code CLI](https://kilo.ai/cli) through its npm package.
+The Kilo Code feature installs the [Kilo Code CLI](https://kilo.ai/cli) from its GitHub Releases native binary.
 
 ```jsonc
 "features": {
