@@ -1,8 +1,8 @@
 {
     "name": "Kilo Code CLI",
     "id": "kilo-code",
-    "version": "1.0.0",
-    "description": "Installs the Kilo Code command-line coding agent",
+    "version": "2.0.0",
+    "description": "A feature for installing the Kilo Code CLI tool",
     "documentationURL": "https://kilo.ai/cli",
     "options": {
         "version": {
@@ -11,7 +11,7 @@
             "description": "Version of the Kilo Code CLI to install, or 'latest'."
         }
     },
-    "dependsOn": {
-        "ghcr.io/devcontainers/features/node:1": {}
-    }
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
 }
