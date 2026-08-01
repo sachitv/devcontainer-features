@@ -31,7 +31,7 @@ case "$(uname -m)" in
         TARGET="x86_64-unknown-linux-musl"
         ;;
     aarch64 | arm64)
-        TARGET="aarch64-unknown-linux-gnu"
+        TARGET="aarch64-unknown-linux-musl"
         ;;
     *)
         echo "Unsupported architecture: $(uname -m)" >&2
@@ -69,7 +69,7 @@ trap 'rm -rf "$TMP_DIR"' EXIT
 
 echo "Installing Codex $RELEASE_TAG for $TARGET..."
 curl --fail --silent --show-error --location "$DOWNLOAD_URL" --output "$TMP_DIR/$ASSET_NAME"
-zstd --decompress "$TMP_DIR/$ASSET_NAME" --output "$TMP_DIR/$BINARY_NAME"
+zstd --decompress "$TMP_DIR/$ASSET_NAME" -o "$TMP_DIR/$BINARY_NAME"
 install -m 0755 "$TMP_DIR/$BINARY_NAME" "/usr/local/bin/$BINARY_NAME"
 
 # Retain the convenience command exposed by earlier versions of this Feature.
