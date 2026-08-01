@@ -1,14 +1,13 @@
-# Claude Code
 
-Installs the [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) command-line coding agent from its official native binary on GitHub Releases and makes `claude` available on `PATH`. No Node.js or npm is required.
+# Claude Code (claude-code)
+
+Installs the Claude Code command-line coding agent from its official native binary on GitHub Releases
 
 ## Example Usage
 
 ```json
 "features": {
-    "ghcr.io/sachitv/devcontainer-features/claude-code:1": {
-        "version": "latest"
-    }
+    "ghcr.io/sachitv/devcontainer-features/claude-code:1": {}
 }
 ```
 
@@ -16,4 +15,10 @@ Installs the [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overvi
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| version | Version of Claude Code to install, or `latest`. | string | latest |
+| version | Version of Claude Code to install, or 'latest'. | string | latest |
+
+
+
+---
+
+_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/sachitv/devcontainer-features/blob/main/src/claude-code/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
