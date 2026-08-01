@@ -42,8 +42,6 @@ After building the container, you can use Codex:
 $ codex --version
 Codex v0.58.0
 
-$ codex-cli --help
-# Or use the wrapper script
 ```
 
 #### Options
@@ -53,7 +51,7 @@ $ codex-cli --help
 #### Notes
 
 - Ensure you set the `OPENAI_API_KEY` environment variable for Codex to function properly.
-- The feature installs Codex to `/usr/local/bin/` and creates a wrapper script for convenience.
+- The feature installs Codex to `/usr/local/bin/`.
 
 ### Opencode
 
