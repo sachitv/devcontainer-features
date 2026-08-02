@@ -34,6 +34,7 @@ check_required_tools() {
     declare -a missing=()
     [ -r '/etc/ssl/certs/ca-certificates.crt' ] || missing+=('ca-certificates')
     command -v curl >/dev/null 2>&1 || missing+=('curl')
+    command -v jq >/dev/null 2>&1 || missing+=('jq')
     command -v tar >/dev/null 2>&1 || missing+=('tar')
     if [ "${#missing[@]}" -gt 0 ]; then
         apt_get_checkinstall "${missing[@]}"
@@ -46,17 +47,24 @@ curl_download_stdout() {
 }
 
 github_get_latest_release() {
-    local latestUrl
-    latestUrl="$(curl --fail --silent --show-error --location \
-        --output /dev/null --write-out '%{url_effective}' \
-        "https://github.com/${githubRepository}/releases/latest")"
-    case "$latestUrl" in
-        */releases/tag/v*) printf '%s\n' "${latestUrl##*/releases/tag/v}" ;;
-        *)
-            echo "Unable to determine the latest Kilo Code release." >&2
-            exit 1
-            ;;
-    esac
+    local latestTag
+    latestTag="$(curl_download_stdout \
+        "https://api.github.com/repos/${githubRepository}/releases?per_page=100" |
+        jq --raw-output '
+            [
+                .[]
+                | select(.draft == false and .prerelease == false)
+                | .tag_name
+                | select(test("^v[0-9]+\\.[0-9]+\\.[0-9]+([-.][0-9A-Za-z.-]+)?$"))
+            ][0] // empty
+        ')"
+
+    if [ -z "$latestTag" ]; then
+        echo "Unable to determine the latest Kilo Code release." >&2
+        exit 1
+    fi
+
+    printf '%s\n' "${latestTag#v}"
 }
 
 utils_check_version() {
