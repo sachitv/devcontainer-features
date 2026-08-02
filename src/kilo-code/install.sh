@@ -47,20 +47,31 @@ curl_download_stdout() {
 }
 
 github_get_latest_release() {
+    local releasesJson
     local latestTag
-    latestTag="$(curl_download_stdout \
-        "https://api.github.com/repos/${githubRepository}/releases?per_page=100" |
-        jq --raw-output '
-            [
-                .[]
-                | select(.draft == false and .prerelease == false)
-                | .tag_name
-                | select(test("^v[0-9]+\\.[0-9]+\\.[0-9]+([-.][0-9A-Za-z.-]+)?$"))
-            ][0] // empty
-        ')"
+
+    # The repository publishes several release streams (the CLI uses "vX.Y.Z"
+    # tags, JetBrains uses "jetbrains/vX.Y.Z"), so /releases/latest cannot be
+    # used to find the newest CLI release.
+    if ! releasesJson="$(curl_download_stdout \
+        "https://api.github.com/repos/${githubRepository}/releases?per_page=100")"; then
+        echo 'Unable to query the Kilo Code releases API.' >&2
+        exit 1
+    fi
+
+    latestTag="$(printf '%s' "$releasesJson" | jq --raw-output '
+        [
+            .[]
+            | select(.draft == false and .prerelease == false)
+            | .tag_name
+            | select(test("^v[0-9]+\\.[0-9]+\\.[0-9]+$"))
+        ]
+        | sort_by(.[1:] | split(".") | map(tonumber))
+        | last // empty
+    ')"
 
     if [ -z "$latestTag" ]; then
-        echo "Unable to determine the latest Kilo Code release." >&2
+        echo 'Unable to determine the latest Kilo Code release.' >&2
         exit 1
     fi
 
