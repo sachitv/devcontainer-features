@@ -4,8 +4,22 @@
 >
 > To provide feedback to the specification, please leave a comment [on spec issue #70](https://github.com/devcontainers/spec/issues/70). For more broad feedback regarding dev container Features, please see [spec issue #61](https://github.com/devcontainers/spec/issues/61).
 
+## Usage
+
+All of the features below can be used with the following base image. Append whichever features you want from the sections below to the `features` object:
+
+```jsonc
+{
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+        ...
+    }
+}
+```
+
 ## Table of Contents
 
+- [Usage](#usage)
 - [Features](#features)
   - [Codex](#codex)
   - [Opencode](#opencode)
@@ -23,15 +37,12 @@ The Codex feature installs the [Codex CLI tool](https://github.com/openai/codex)
 
 #### Usage
 
-Add the feature to your `devcontainer.json`:
+Add the feature to the `features` object in your `devcontainer.json`:
 
 ```jsonc
-{
-    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-    "features": {
-        "ghcr.io/sachitv/devcontainer-features/codex:1": {
-            "release_tag": "latest"
-        }
+"features": {
+    "ghcr.io/sachitv/devcontainer-features/codex:1": {
+        "release_tag": "latest"
     }
 }
 ```
@@ -59,15 +70,12 @@ The Opencode feature installs the [opencode CLI tool](https://github.com/anomaly
 
 #### Usage
 
-Add the feature to your `devcontainer.json`:
+Add the feature to the `features` object in your `devcontainer.json`:
 
 ```jsonc
-{
-    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-    "features": {
-        "ghcr.io/sachitv/devcontainer-features/opencode:1": {
-            "version": "latest"
-        }
+"features": {
+    "ghcr.io/sachitv/devcontainer-features/opencode:1": {
+        "version": "latest"
     }
 }
 ```
@@ -86,6 +94,10 @@ $ opencode --help
 
 The Claude Code feature installs [Anthropic's Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) command-line coding agent from its official native binary on GitHub Releases. No Node.js or npm is required.
 
+#### Usage
+
+Add the feature to the `features` object in your `devcontainer.json`:
+
 ```jsonc
 "features": {
     "ghcr.io/sachitv/devcontainer-features/claude-code:1": {
@@ -100,6 +112,10 @@ Use the `version` option to install `latest` or pin a semantic version (for exam
 
 The agy feature installs the latest stable Antigravity CLI.
 
+#### Usage
+
+Add the feature to the `features` object in your `devcontainer.json`:
+
 ```jsonc
 "features": {
     "ghcr.io/sachitv/devcontainer-features/agy:1": {}
@@ -111,6 +127,10 @@ After the container is built, run `agy --version` to verify the installation.
 ### Kilo Code CLI
 
 The Kilo Code feature installs the [Kilo Code CLI](https://kilo.ai/cli) from its GitHub Releases native binary.
+
+#### Usage
+
+Add the feature to the `features` object in your `devcontainer.json`:
 
 ```jsonc
 "features": {
