@@ -92,21 +92,25 @@ echo_banner() {
     local text="$1"
     echo -e "\e[1m\e[97m\e[41m$text\e[0m"
 }
-github_list_releases() {
-    if [ -z "$1" ]; then
-        echo "Usage: list_github_releases <owner/repo>"
-        return 1
-    fi
-    local repo="$1"
-    local url="https://api.github.com/repos/$repo/releases"
-    curl -s "$url" | grep -Po '"tag_name": "\K.*?(?=")' | grep -E '^v?[0-9]+\.[0-9]+\.[0-9]+$' | sed 's/^v//'
-}
 github_get_latest_release() {
     if [ -z "$1" ]; then
         echo "Usage: get_latest_github_release <owner/repo>"
         return 1
     fi
-    github_list_releases "$1" | head -n 1
+    local repo="$1"
+    local url="https://github.com/$repo/releases/latest"
+    local releaseUrl
+    releaseUrl=$(curl --silent --show-error --fail --location --output /dev/null --write-out '%{url_effective}' "$url") || {
+        echo "Failed to determine the latest release for '$repo'." >&2
+        return 1
+    }
+    local version
+    version=$(printf '%s\n' "$releaseUrl" | sed -nE 's#^.*/releases/tag/v?([0-9]+\.[0-9]+\.[0-9]+)$#\1#p')
+    if [ -z "$version" ]; then
+        echo "Unable to determine the latest release for '$repo' from '$releaseUrl'." >&2
+        return 1
+    fi
+    echo "$version"
 }
 utils_check_version() {
     local version=$1
