@@ -24,7 +24,7 @@ All of the features below can be used with the following base image. Append whic
   - [Codex](#codex)
   - [Opencode](#opencode)
   - [Claude Code](#claude-code)
-  - [agy CLI](#agy-cli)
+  - [Antigravity CLI](#antigravity-cli)
   - [Kilo Code CLI](#kilo-code-cli)
 
 ## Features
@@ -108,9 +108,9 @@ Add the feature to the `features` object in your `devcontainer.json`:
 
 Use the `version` option to install `latest` or pin a semantic version (for example `2.1.220`). After the container is built, run `claude --version` to verify the installation.
 
-### agy CLI
+### Antigravity CLI
 
-The agy feature installs the latest stable Antigravity CLI.
+The Antigravity CLI feature installs the latest stable Antigravity CLI.
 
 #### Usage
 
