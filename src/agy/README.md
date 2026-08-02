@@ -1,7 +1,7 @@
 
-# agy CLI (agy)
+# Antigravity CLI (agy)
 
-Installs the latest stable agy command-line interface
+Installs the latest stable Antigravity CLI
 
 ## Example Usage
 
