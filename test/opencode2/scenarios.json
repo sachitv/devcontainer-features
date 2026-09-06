@@ -1,0 +1,18 @@
+{
+    "opencode2-with-tag-next": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "opencode2": {
+                "version": "next"
+            }
+        }
+    },
+    "opencode2-with-tag-dev": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "opencode2": {
+                "version": "dev"
+            }
+        }
+    }
+}

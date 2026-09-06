@@ -23,6 +23,7 @@ All of the features below can be used with the following base image. Append whic
 - [Features](#features)
   - [Codex](#codex)
   - [Opencode](#opencode)
+  - [Opencode 2](#opencode-2)
   - [Claude Code](#claude-code)
   - [Antigravity CLI](#antigravity-cli)
   - [Kilo Code CLI](#kilo-code-cli)
@@ -89,6 +90,36 @@ $ opencode --help
 #### Options
 
 - `version`: Version of opencode to install (default: `latest`). Provide a specific semantic version like `1.2.3` to pin the install.
+
+### Opencode 2
+
+The Opencode 2 feature installs `opencode2`, the in-development preview/beta build of the next major version of [opencode](https://github.com/anomalyco/opencode) (see [opencode.ai/v2/docs](https://opencode.ai/v2/docs)). This build isn't published as a GitHub Release yet, so the feature fetches the platform-specific `@opencode-ai/cli-linux-x64` / `@opencode-ai/cli-linux-arm64` tarball straight from the npm registry with `curl` and extracts the binary with `tar` — no Node.js or npm CLI is installed or invoked.
+
+#### Usage
+
+Add the feature to the `features` object in your `devcontainer.json`:
+
+```jsonc
+"features": {
+    "ghcr.io/sachitv/devcontainer-features/opencode2:1": {
+        "version": "beta"
+    }
+}
+```
+
+After building the container, you can verify the installation:
+
+```bash
+$ opencode2 --version
+```
+
+#### Options
+
+- `version`: npm dist-tag or explicit package version to install (default: `beta`). Accepts the dist-tags `beta`, `next`, `dev`, `tui-v2`, or an explicit version like `0.0.0-beta-19157`. These are pre-release build identifiers, not semantic versions, since this tracks unreleased, actively changing builds.
+
+#### Notes
+
+- This is a separate binary (`/usr/local/bin/opencode2`) from the stable `opencode` feature above, so both can be installed side by side without conflict.
 
 ### Claude Code
 
