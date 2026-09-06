@@ -115,10 +115,11 @@ $ opencode2 --version
 
 #### Options
 
-- `version`: npm dist-tag or explicit package version to install (default: `beta`). Accepts the dist-tags `beta`, `next`, `dev`, `tui-v2`, or an explicit version like `0.0.0-beta-19157`. These are pre-release build identifiers, not semantic versions, since this tracks unreleased, actively changing builds.
+- `version`: npm dist-tag or explicit package version to install (default: `beta`). Accepts the dist-tags `beta`, `next`, `dev`, `tui-v2`, or an explicit version like `0.0.0-beta-19157`. All of these resolve to `0.0.0-<tag>-<build>` style pre-release build identifiers, not semantic versions, and the build number keeps advancing as new preview builds are published.
 
 #### Notes
 
+- `version: latest` is **not** supported and will fail: on the underlying npm packages, `latest` points at the stable, already-released opencode v1 line, which ships a differently named binary, not `opencode2`.
 - This is a separate binary (`/usr/local/bin/opencode2`) from the stable `opencode` feature above, so both can be installed side by side without conflict.
 
 ### Claude Code

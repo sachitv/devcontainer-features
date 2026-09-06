@@ -8,7 +8,7 @@
         "version": {
             "type": "string",
             "default": "beta",
-            "description": "npm dist-tag ('beta', 'next', 'dev', 'tui-v2') or an explicit @opencode-ai/cli-linux-<arch> package version to install."
+            "description": "npm dist-tag ('beta', 'next', 'dev', 'tui-v2') or an explicit @opencode-ai/cli-linux-<arch> package version to install. These all resolve to '0.0.0-<tag>-<build>' style pre-release versions, not semantic versions. 'latest' is not supported since it points at the unrelated, stable opencode v1 release line."
         }
     },
     "installsAfter": [

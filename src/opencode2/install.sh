@@ -97,7 +97,10 @@ npm_resolve_tarball_url() {
         echo "Could not find a tarball URL for '$packageName' at version/tag '$version'." >&2
         return 1
     fi
+    local resolvedVersion
+    resolvedVersion=$(printf '%s' "$manifest" | grep -oE '"version"\s*:\s*"[^"]+"' | head -n1 | sed -E 's/.*"version"\s*:\s*"([^"]+)"/\1/')
     echo "$tarballUrl"
+    echo "$resolvedVersion"
 }
 
 install() {
@@ -106,12 +109,18 @@ install() {
     local architecture
     architecture="$(debian_get_arch)"
     local packageName="${npmScope}/${npmPackagePrefix}-${architecture}"
-    local tarballUrl
-    tarballUrl="$(npm_resolve_tarball_url "$packageName" "$VERSION")"
+    local tarballUrl resolvedVersion
+    { read -r tarballUrl; read -r resolvedVersion; } < <(npm_resolve_tarball_url "$packageName" "$VERSION")
+    echo "Resolved '$VERSION' to package version '$resolvedVersion'."
     local tempFile
     tempFile=$(mktemp)
     curl --silent --show-error --fail --location --connect-timeout 5 --output "$tempFile" "$tarballUrl"
-    tar -xzf "$tempFile" -C "$binaryTargetFolder" --strip-components=2 "package/bin/${binaryName}"
+    if ! tar -xzf "$tempFile" -C "$binaryTargetFolder" --strip-components=2 "package/bin/${binaryName}" 2>/dev/null; then
+        rm -f "$tempFile"
+        echo "=== [ERROR] Package '$packageName@$resolvedVersion' does not contain a '${binaryName}' binary." >&2
+        echo "This feature only supports pre-release opencode2 builds. Valid values for 'version' are the npm dist-tags 'beta', 'next', 'dev', 'tui-v2' (all resolve to '0.0.0-<tag>-<build>' style versions), or an explicit version in that same style. 'latest' is not supported: it points at the unrelated, stable opencode v1 release line." >&2
+        exit 1
+    fi
     rm "$tempFile"
     chmod 755 "${binaryTargetFolder}/${binaryName}"
 }
