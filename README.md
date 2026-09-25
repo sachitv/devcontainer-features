@@ -121,8 +121,15 @@ $ opencode2 --version
 
 - The OpenCode 2 binary is installed to `/usr/local/lib/opencode2/bin/opencode` and accessed via `/usr/local/bin/opencode2`.
 - When installed alone, `/usr/local/bin/opencode` is also linked to `opencode2`. If the `opencode` (v1) feature is also included in the same devcontainer, the existing `opencode` binary is preserved and OpenCode 2 is available via `opencode2`.
+- **Configuration & Precedence**:
+  - Global config: `~/.config/opencode/opencode.json(c)` and `~/.config/opencode/cli.json`.
+  - Project config: `<project>/.opencode/opencode.json(c)` and `<project>/opencode.json(c)`.
+  - Extensions & definitions: `<project>/.opencode/` (`skills/`, `commands/`, `agents/`).
+  - Precedence: `<project>/.opencode/` overrides `<project>/opencode.json(c)`, which overrides the global config.
+- **V1 Compatibility & Coexistence**:
+  - OpenCode 2 reads existing V1 configurations and normalizes them in-memory without rewriting files. Existing skills and definitions in `.opencode/` continue to work. Note that V1 plugins are incompatible and need porting.
+  - OpenCode 1 and OpenCode 2 share default configuration locations (`~/.config/opencode/` and `.opencode/`). OpenCode 1 does not understand native V2 syntax; when using both features in the same environment, keep configs in V1 format, isolate them per project, or set environment variables to avoid conflicting settings.
 - The feature requires `ca-certificates`, `curl`, and `tar` (automatically installed via `apt-get`, `apk`, `dnf`, `yum`, `pacman`, or `zypper`).
-- OpenCode 1 and OpenCode 2 share default configuration locations (`~/.config/opencode/opencode.json` and `.opencode/`). When using both features in the same environment, configurations may overlap or conflict; use project-local configurations or set environment variables to avoid conflicting settings.
 - Uses the vendor's official bootstrap installer from `https://opencode.ai/v2/install`, which performs platform, libc, and CPU architecture detection.
 
 ### Claude Code
