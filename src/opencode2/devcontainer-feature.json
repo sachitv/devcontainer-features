@@ -11,6 +11,8 @@
         }
     },
     "installsAfter": [
-        "ghcr.io/devcontainers/features/common-utils"
+        "ghcr.io/devcontainers/features/common-utils",
+        "./opencode",
+        "ghcr.io/sachitv/devcontainer-features/opencode"
     ]
 }

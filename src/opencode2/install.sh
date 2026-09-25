@@ -9,6 +9,7 @@ fi
 readonly appName='opencode2'
 readonly installScriptUrl='https://opencode.ai/v2/install'
 readonly binaryTargetFolder='/usr/local/bin'
+readonly opencode2LibDir='/usr/local/lib/opencode2/bin'
 readonly binaryName='opencode'
 readonly shimName='opencode2'
 
@@ -42,6 +43,17 @@ check_required_tools() {
             apt_get_cleanup
         elif command -v apk >/dev/null 2>&1; then
             apk add --no-cache "${missing[@]}"
+        elif command -v dnf >/dev/null 2>&1; then
+            dnf install -y "${missing[@]}"
+        elif command -v yum >/dev/null 2>&1; then
+            yum install -y "${missing[@]}"
+        elif command -v pacman >/dev/null 2>&1; then
+            pacman -Sy --noconfirm "${missing[@]}"
+        elif command -v zypper >/dev/null 2>&1; then
+            zypper install -y "${missing[@]}"
+        else
+            echo "=== [ERROR] Missing required packages: ${missing[*]}. Could not find a supported package manager (apt-get, apk, dnf, yum, pacman, zypper)." >&2
+            exit 1
         fi
     fi
 }
@@ -90,12 +102,23 @@ install_opencode2() {
         exit 1
     fi
 
+    # Install the OpenCode 2 binary in a dedicated directory to prevent collisions with opencode v1
+    mkdir -p "$opencode2LibDir"
+    command install -m 0755 "${tempHome}/.opencode/bin/${binaryName}" "${opencode2LibDir}/${binaryName}"
+
+    # Publish opencode2 wrapper pointing directly to the OpenCode 2 binary
     mkdir -p "$binaryTargetFolder"
-    command install -m 0755 "${tempHome}/.opencode/bin/${binaryName}" "${binaryTargetFolder}/${binaryName}"
-    if [ -f "${tempHome}/.opencode/bin/${shimName}" ]; then
-        command install -m 0755 "${tempHome}/.opencode/bin/${shimName}" "${binaryTargetFolder}/${shimName}"
+    cat << EOF > "${binaryTargetFolder}/${shimName}"
+#!/bin/sh
+exec ${opencode2LibDir}/${binaryName} "\$@"
+EOF
+    chmod 755 "${binaryTargetFolder}/${shimName}"
+
+    # If /usr/local/bin/opencode is not already provided by another feature, link it to opencode2
+    if [ -e "${binaryTargetFolder}/${binaryName}" ]; then
+        echo "Existing '${binaryTargetFolder}/${binaryName}' detected; keeping it and using '${shimName}' for OpenCode 2."
     else
-        ln -sf "${binaryTargetFolder}/${binaryName}" "${binaryTargetFolder}/${shimName}"
+        ln -sf "${binaryTargetFolder}/${shimName}" "${binaryTargetFolder}/${binaryName}"
     fi
 
     cleanup

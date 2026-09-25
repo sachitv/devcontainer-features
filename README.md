@@ -117,6 +117,13 @@ $ opencode2 --version
 
 - `version`: Version of opencode 2 to install (default: `latest`). Provide a specific semantic version like `2.0.6` to pin the install.
 
+#### Notes
+
+- The OpenCode 2 binary is installed to `/usr/local/lib/opencode2/bin/opencode` and accessed via `/usr/local/bin/opencode2`.
+- When installed alone, `/usr/local/bin/opencode` is also linked to `opencode2`. If the `opencode` (v1) feature is also included in the same devcontainer, the existing `opencode` binary is preserved and OpenCode 2 is available via `opencode2`.
+- The feature requires `ca-certificates`, `curl`, and `tar` (automatically installed via `apt-get`, `apk`, `dnf`, `yum`, `pacman`, or `zypper`).
+- Uses the vendor's official bootstrap installer from `https://opencode.ai/v2/install`, which performs platform, libc, and CPU architecture detection.
+
 ### Claude Code
 
 The Claude Code feature installs [Anthropic's Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) command-line coding agent from its official native binary on GitHub Releases. No Node.js or npm is required.
