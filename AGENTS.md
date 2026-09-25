@@ -10,6 +10,8 @@
   Runs the Codex feature tests via the devcontainer CLI.
 - `devcontainer features test --features opencode --remote-user root --skip-scenarios --base-image mcr.microsoft.com/devcontainers/base:ubuntu .`
   Runs the Opencode feature tests via the devcontainer CLI.
+- `devcontainer features test --features opencode2 --remote-user root --skip-scenarios --base-image mcr.microsoft.com/devcontainers/base:ubuntu .`
+  Runs the Opencode 2 feature tests via the devcontainer CLI.
 - Shell scripts in `test/<feature>/*.sh` can be run individually inside the devcontainer test harness.
 
 ## Coding Style & Naming Conventions

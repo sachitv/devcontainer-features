@@ -23,6 +23,7 @@ All of the features below can be used with the following base image. Append whic
 - [Features](#features)
   - [Codex](#codex)
   - [Opencode](#opencode)
+  - [Opencode 2](#opencode-2)
   - [Claude Code](#claude-code)
   - [Antigravity CLI](#antigravity-cli)
   - [Kilo Code CLI](#kilo-code-cli)
@@ -89,6 +90,32 @@ $ opencode --help
 #### Options
 
 - `version`: Version of opencode to install (default: `latest`). Provide a specific semantic version like `1.2.3` to pin the install.
+
+### Opencode 2
+
+The Opencode 2 feature installs the [OpenCode 2](https://opencode.ai/v2/docs) CLI tool. It runs the official v2 installer and places `opencode` and `opencode2` on your PATH.
+
+#### Usage
+
+Add the feature to the `features` object in your `devcontainer.json`:
+
+```jsonc
+"features": {
+    "ghcr.io/sachitv/devcontainer-features/opencode2:1": {
+        "version": "latest"
+    }
+}
+```
+
+After building the container, you can verify the installation:
+
+```bash
+$ opencode2 --version
+```
+
+#### Options
+
+- `version`: Version of opencode 2 to install (default: `latest`). Provide a specific semantic version like `2.0.6` to pin the install.
 
 ### Claude Code
 
