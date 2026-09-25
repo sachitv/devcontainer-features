@@ -21,6 +21,7 @@ A feature for installing the opencode 2 CLI tool
 
 - **Command & Coexistence with Opencode (v1)**: The OpenCode 2 binary is installed to `/usr/local/lib/opencode2/bin/opencode` and exposed via `/usr/local/bin/opencode2`. If `/usr/local/bin/opencode` is not already present, it is also linked to `opencode2`. If the `opencode` (v1) feature is also used in the same devcontainer, the existing `opencode` binary is preserved and OpenCode 2 is accessed via `opencode2`.
 - **System Dependencies**: Requires `ca-certificates`, `curl`, and `tar`. Automatically installed via `apt-get`, `apk`, `dnf`, `yum`, `pacman`, or `zypper`.
+- **Configuration & Overlap with Opencode (v1)**: OpenCode 1 and OpenCode 2 share default configuration locations (`~/.config/opencode/opencode.json` and `.opencode/`). If both features are installed in the same devcontainer, configurations may overlap or conflict. It is recommended to use project-local configs (`opencode.json(c)` / `.opencode/`) or set environment variables when using them together.
 - **Installer Script**: Uses the vendor's official bootstrap installer from `https://opencode.ai/v2/install`, which performs platform, libc (glibc/musl), and CPU architecture/AVX2 detection to fetch the appropriate binary artifact.
 
 ---
