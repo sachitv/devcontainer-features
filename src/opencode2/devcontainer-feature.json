@@ -1,0 +1,18 @@
+{
+    "name": "Opencode 2",
+    "id": "opencode2",
+    "version": "1.0.0",
+    "description": "A feature for installing the opencode 2 CLI tool",
+    "options": {
+        "version": {
+            "type": "string",
+            "default": "latest",
+            "description": "Version of opencode 2 to install. Use 'latest' for the most recent release."
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils",
+        "./opencode",
+        "ghcr.io/sachitv/devcontainer-features/opencode"
+    ]
+}
