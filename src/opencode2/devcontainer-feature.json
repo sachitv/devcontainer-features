@@ -1,7 +1,7 @@
 {
     "name": "Opencode 2",
     "id": "opencode2",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A feature for installing the opencode 2 CLI tool",
     "options": {
         "version": {

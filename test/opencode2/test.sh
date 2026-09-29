@@ -42,6 +42,7 @@ source dev-container-features-test-lib
 check "validate opencode2 prints output" bash -c "opencode2 --version | grep -q ."
 check "validate opencode2 --version outputs version 2" bash -c "opencode2 --version | grep -q 'opencode v2\.'"
 check "validate opencode --version outputs version 2" bash -c "opencode --version | grep -q 'opencode v2\.'"
+check "validate opencode2 alone keeps the default database" bash -c "db=\$(opencode2 debug paths db) && [ -n \"\$db\" ] && [ \"\${db##*/}\" != 'opencode2.db' ]"
 
 # Report result
 # If any of the checks above exited with a non-zero exit code, the test will fail.

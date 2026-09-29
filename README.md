@@ -121,6 +121,7 @@ $ opencode2 --version
 
 - The OpenCode 2 binary is installed to `/usr/local/lib/opencode2/bin/opencode` and accessed via `/usr/local/bin/opencode2`.
 - When installed alone, `/usr/local/bin/opencode` is also linked to `opencode2`. If the `opencode` (v1) feature is also included in the same devcontainer, the existing `opencode` binary is preserved and OpenCode 2 is available via `opencode2`.
+- **Separate database when both are installed**: If the `opencode` (v1) feature is also present, the `opencode2` shim sets `OPENCODE_DB=opencode2.db`, so OpenCode 2 stores sessions in `~/.local/share/opencode/opencode2.db` and never migrates the database used by OpenCode 1. Set `OPENCODE2_DB` to use a different path (relative paths resolve under the OpenCode data directory). When OpenCode 2 is installed alone, it uses the upstream default database.
 - **Configuration & Precedence**:
   - Global config: `~/.config/opencode/opencode.json(c)` and `~/.config/opencode/cli.json`.
   - Project config: `<project>/.opencode/opencode.json(c)` and `<project>/opencode.json(c)`.
