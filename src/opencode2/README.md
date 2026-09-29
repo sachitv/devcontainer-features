@@ -34,6 +34,7 @@ A feature for installing the opencode 2 CLI tool
 - **System Dependencies**: Requires `ca-certificates`, `curl`, and `tar`. Automatically installed via `apt-get`, `apk`, `dnf`, `yum`, `pacman`, or `zypper`.
 - **Installer Script**: Uses the vendor's official bootstrap installer from `https://opencode.ai/v2/install`, which performs platform, libc (glibc/musl), and CPU architecture/AVX2 detection to fetch the appropriate binary artifact.
 
+
 ---
 
 _Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/sachitv/devcontainer-features/blob/main/src/opencode2/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
