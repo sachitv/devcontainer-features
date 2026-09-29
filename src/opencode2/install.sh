@@ -107,22 +107,35 @@ install_opencode2() {
     mkdir -p "$opencode2LibDir"
     command install -m 0755 "${tempHome}/.opencode/bin/${binaryName}" "${opencode2LibDir}/${binaryName}"
 
-    # Publish opencode2 wrapper pointing directly to the OpenCode 2 binary.
-    # OpenCode 2 gets its own database (via OPENCODE_DB) so it never migrates the
-    # database opencode v1 uses. Relative paths resolve under the opencode data dir.
+    # Detect opencode v1 (e.g. from the opencode feature). A symlink back to our own
+    # shim is left over from a previous opencode2-only install and does not count.
+    local opencodeV1Present='false'
+    if [ -e "${binaryTargetFolder}/${binaryName}" ] \
+        && [ "$(readlink -f "${binaryTargetFolder}/${binaryName}")" != "$(readlink -f "${binaryTargetFolder}/${shimName}")" ]; then
+        opencodeV1Present='true'
+    fi
+
     mkdir -p "$binaryTargetFolder"
-    cat << EOF > "${binaryTargetFolder}/${shimName}"
+    if [ "$opencodeV1Present" = 'true' ]; then
+        # Both versions installed: give OpenCode 2 its own database (via OPENCODE_DB) so it
+        # never migrates the one opencode v1 uses. Relative paths resolve under the opencode
+        # data dir. OPENCODE2_DB overrides it; a global OPENCODE_DB is ignored on purpose.
+        echo "Existing '${binaryTargetFolder}/${binaryName}' detected; keeping it and using '${shimName}' for OpenCode 2 with a separate database."
+        cat << EOF > "${binaryTargetFolder}/${shimName}"
 #!/bin/sh
 OPENCODE_DB="\${OPENCODE2_DB:-${defaultDbName}}"
 export OPENCODE_DB
 exec ${opencode2LibDir}/${binaryName} "\$@"
 EOF
-    chmod 755 "${binaryTargetFolder}/${shimName}"
-
-    # If /usr/local/bin/opencode is not already provided by another feature, link it to opencode2
-    if [ -e "${binaryTargetFolder}/${binaryName}" ]; then
-        echo "Existing '${binaryTargetFolder}/${binaryName}' detected; keeping it and using '${shimName}' for OpenCode 2."
+        chmod 755 "${binaryTargetFolder}/${shimName}"
     else
+        # OpenCode 2 alone: plain wrapper using the upstream default database, and link
+        # /usr/local/bin/opencode to it.
+        cat << EOF > "${binaryTargetFolder}/${shimName}"
+#!/bin/sh
+exec ${opencode2LibDir}/${binaryName} "\$@"
+EOF
+        chmod 755 "${binaryTargetFolder}/${shimName}"
         ln -sf "${binaryTargetFolder}/${shimName}" "${binaryTargetFolder}/${binaryName}"
     fi
 
