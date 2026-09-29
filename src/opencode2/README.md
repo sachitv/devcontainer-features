@@ -20,6 +20,7 @@ A feature for installing the opencode 2 CLI tool
 ## Notes
 
 - **Command & Coexistence with Opencode (v1)**: The OpenCode 2 binary is installed to `/usr/local/lib/opencode2/bin/opencode` and exposed via `/usr/local/bin/opencode2`. If `/usr/local/bin/opencode` is not already present, it is also linked to `opencode2`. If the `opencode` (v1) feature is also used in the same devcontainer, the existing `opencode` binary is preserved and OpenCode 2 is accessed via `opencode2`.
+- **Separate Database**: The `opencode2` wrapper sets `OPENCODE_DB=opencode2.db`, so OpenCode 2 keeps its sessions in `~/.local/share/opencode/opencode2.db` instead of the database OpenCode 1 uses. Without this, running OpenCode 2 migrates the shared database and OpenCode 1 can no longer start. Set `OPENCODE2_DB` to choose another location (relative paths resolve under the OpenCode data directory; absolute paths are used as-is). A global `OPENCODE_DB` is ignored by `opencode2` so it cannot point both versions at the same file.
 - **Configuration Locations & Precedence**:
   - Global config: `~/.config/opencode/opencode.json(c)` and `~/.config/opencode/cli.json` (CLI settings).
   - Project config: `<project>/.opencode/opencode.json(c)` and `<project>/opencode.json(c)`.

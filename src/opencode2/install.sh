@@ -12,6 +12,7 @@ readonly binaryTargetFolder='/usr/local/bin'
 readonly opencode2LibDir='/usr/local/lib/opencode2/bin'
 readonly binaryName='opencode'
 readonly shimName='opencode2'
+readonly defaultDbName='opencode2.db'
 
 apt_get_update() {
     if [ "$(find /var/lib/apt/lists/* -maxdepth 0 2>/dev/null | wc -l)" = "0" ]; then
@@ -106,10 +107,14 @@ install_opencode2() {
     mkdir -p "$opencode2LibDir"
     command install -m 0755 "${tempHome}/.opencode/bin/${binaryName}" "${opencode2LibDir}/${binaryName}"
 
-    # Publish opencode2 wrapper pointing directly to the OpenCode 2 binary
+    # Publish opencode2 wrapper pointing directly to the OpenCode 2 binary.
+    # OpenCode 2 gets its own database (via OPENCODE_DB) so it never migrates the
+    # database opencode v1 uses. Relative paths resolve under the opencode data dir.
     mkdir -p "$binaryTargetFolder"
     cat << EOF > "${binaryTargetFolder}/${shimName}"
 #!/bin/sh
+OPENCODE_DB="\${OPENCODE2_DB:-${defaultDbName}}"
+export OPENCODE_DB
 exec ${opencode2LibDir}/${binaryName} "\$@"
 EOF
     chmod 755 "${binaryTargetFolder}/${shimName}"

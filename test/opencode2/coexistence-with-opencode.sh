@@ -12,6 +12,8 @@ source dev-container-features-test-lib
 # check <LABEL> <cmd> [args...]
 check "validate opencode reports v1 version" bash -c "opencode --version | grep -q '1.1.8'"
 check "validate opencode2 reports v2 version" bash -c "opencode2 --version | grep -q '2.0.6'"
+check "validate opencode2 does not share the opencode v1 database" bash -c "opencode2 debug paths db | grep -q 'opencode2\.db$'"
+check "validate opencode2 ignores a global OPENCODE_DB" bash -c "OPENCODE_DB=opencode.db opencode2 debug paths db | grep -q 'opencode2\.db$'"
 
 # Report result
 # If any of the checks above exited with a non-zero exit code, the test will fail.
